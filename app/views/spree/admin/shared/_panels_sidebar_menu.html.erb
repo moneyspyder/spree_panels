@@ -1,0 +1,5 @@
+<%# if can? :admin, Spree::Page %>
+  <ul class="nav nav-sidebar">
+    <%= tab Spree::Panel, url: spree.admin_panels_url, icon: 'stop', label: I18n.t("panels") %>
+  </ul>
+<%# end %>
