@@ -1,5 +1,5 @@
-<%# if can? :admin, Spree::Page %>
+<% if can? :admin, Spree::Panel %>
   <ul class="nav nav-sidebar">
-    <%= tab Spree::Panel, url: spree.admin_panels_url, icon: 'stop', label: I18n.t("panels") %>
+    <%= main_menu_tree Spree.t(:panels), icon: "stop", sub_menu: "panel", url: "#sidebar-panel" %>
   </ul>
-<%# end %>
+<% end %>

@@ -1,0 +1,44 @@
+<% content_for :page_title do %>
+  <%= plural_resource_name(Spree::PanelGroup) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <%= button_link_to Spree.t(:new_panel_group, scope: :static_content), new_object_url, icon: 'plus', class: 'btn-primary', id: 'admin_new_panel_group' %>
+<% end %>
+
+<% if @panel_groups.any? %>
+  <table class="table" id="listing_panel_groups" data-hook>
+    <colgroup>
+      <col style="width: 40%">
+      <col style="width: 35%">
+      <col style="width: 10%">
+      <col style="width: 15%">
+    </colgroup>
+    <thead>
+      <tr data-hook="admin_panel_groups_index_headers">
+        <th><%= Spree::PanelGroup.human_attribute_name(:name) %></th>
+        <th><%#= Spree.t(:link, scope: :static_content) %></th>
+        <th class="text-center"><%= Spree::PanelGroup.human_attribute_name(:visible) %></th>
+        <th data-hook="admin_panel_groups_index_header_actions" class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @panel_groups.each do |panel_group| %>
+        <tr data-hook="admin_panel_groups_index_rows" class="<%= cycle('odd', 'even') %>" id="<%= dom_id panel_group %>">
+          <td><%= panel_group.name %></td>
+          <td><%#= link_to(panel_group.url, panel_group.link, target: '_blank') if panel_group.url %></td>
+          <td class="text-center"><%#= content_tag(:i, '', class: 'icon icon-ok') if panel_group.visible %></td>
+          <td class="actions text-right" data-hook="admin_panel_groups_index_row_actions">
+            <%= link_to_edit panel_group, no_text: true %>
+            <%= link_to_delete panel_group, no_text: true %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alert alert-warning no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: Spree::PanelGroup.model_name.human) %>,
+    <%= link_to Spree.t(:add_one), spree.new_admin_panel_group_path %>!
+  </div>
+<% end %>
