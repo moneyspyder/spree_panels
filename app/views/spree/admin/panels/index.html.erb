@@ -17,7 +17,7 @@
     <thead>
       <tr data-hook="admin_panels_index_headers">
         <th><%= Spree::Panel.human_attribute_name(:name) %></th>
-        <th><%#= Spree.t(:link, scope: :static_content) %></th>
+        <th><%= Spree::Panel.human_attribute_name(:identifier) %></th>
         <th class="text-center"><%= Spree::Panel.human_attribute_name(:visible) %></th>
         <th data-hook="admin_panels_index_header_actions" class="actions"></th>
       </tr>
@@ -26,7 +26,7 @@
       <% @panels.each do |panel| %>
         <tr data-hook="admin_panels_index_rows" class="<%= cycle('odd', 'even') %>" id="<%= dom_id panel %>">
           <td><%= panel.name %></td>
-          <td><%= link_to(panel.url, panel.link, target: '_blank') if panel.url %></td>
+          <td><%= panel.identifier %></td>
           <td class="text-center"><%#= content_tag(:i, '', class: 'icon icon-ok') if panel.visible %></td>
           <td class="actions text-right" data-hook="admin_panels_index_row_actions">
             <%= link_to_edit panel, no_text: true %>
