@@ -11,7 +11,7 @@ module Spree
       end
 
       def panel_group_params
-        params.require(:panel_group).permit(:name, :identifier, panel_ids: [])
+        params.require(:panel_group).permit(:name, :identifier, :position, panel_ids: [])
       end
     end
   end
