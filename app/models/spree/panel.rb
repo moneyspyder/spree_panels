@@ -1,15 +1,9 @@
 class Spree::Panel < ActiveRecord::Base
 
-  # copy/update these options to the development and production environment files
-  # PAPERCLIP_STORAGE_OPTIONS ||= {
-  #   :url => "/spree/#{ Rails.env }/:class/:id/:style/:basename.:extension",
-  #   :path => ":rails_root/public/spree/#{ Rails.env }/:class/:id/:style/:basename.:extension"
-  # }
-
   has_many :panel_group_allocations, class_name: 'Spree::PanelGroupAllocation'
   has_many :panel_groups, through: :panel_group_allocations, class_name: 'Spree::PanelGroup'
 
-  has_attached_file :image, :styles => { :small => "100x100>" } #.merge(PAPERCLIP_STORAGE_OPTIONS)
+  has_attached_file :image, :styles => { small: '100x100' }
 
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
