@@ -21,7 +21,7 @@
         <%= f.label :panels %>
         <div>
           <%= f.select :panels,
-              options_for_select(Spree::Panel.all.collect{ |p| [p.name, p.id] }, Spree::PanelGroup.last.panels.collect{ |p| p.id }),
+              options_for_select(@panels.collect{ |p| [p.name, p.id] }, @panel_group.panels.collect{ |p| p.id }),
               {},
               {
                 multiple: true,
