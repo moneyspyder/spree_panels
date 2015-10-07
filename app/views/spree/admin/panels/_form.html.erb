@@ -42,6 +42,8 @@
           <%= link_to @panel.image.url, target: :_blank do %>
             <%= image_tag @panel.image.url(:small) %>
           <% end %>
+          <br>
+          <%= @panel.image_dimensions %>
         </div>
 
         <div class="checkbox">

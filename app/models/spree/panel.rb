@@ -11,6 +11,8 @@ class Spree::Panel < ActiveRecord::Base
 
   before_validation :set_identifier
 
+  after_post_process :save_image_dimensions
+
   attr_accessor :remove_image
   before_validation { image.clear if remove_image == '1' }
 
@@ -20,6 +22,12 @@ class Spree::Panel < ActiveRecord::Base
     else
       self.identifier = self.name.parameterize if self.name
     end
+  end
+
+  private
+
+  def save_image_dimensions
+    self.image_dimensions = Paperclip::Geometry.from_file(image.queued_for_write[:original]).to_s
   end
 
 end
