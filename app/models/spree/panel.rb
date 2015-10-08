@@ -3,7 +3,9 @@ class Spree::Panel < ActiveRecord::Base
   has_many :panel_group_allocations, class_name: 'Spree::PanelGroupAllocation'
   has_many :panel_groups, through: :panel_group_allocations, class_name: 'Spree::PanelGroup'
 
-  has_attached_file :image, :styles => { small: '100x100' }
+  PANEL_STYLES ||= { small: '100x100' }
+
+  has_attached_file :image, styles: PANEL_STYLES
 
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
