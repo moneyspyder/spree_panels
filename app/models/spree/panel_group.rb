@@ -1,7 +1,7 @@
 class Spree::PanelGroup < ActiveRecord::Base
 
   has_many :panel_group_allocations, class_name: 'Spree::PanelGroupAllocation'
-  has_many :panels, through: :panel_group_allocations, class_name: 'Spree::Panel'
+  has_many :panels, -> { order(name: :asc) }, through: :panel_group_allocations, class_name: 'Spree::Panel'
 
   validates :name, :identifier, presence: true
 
